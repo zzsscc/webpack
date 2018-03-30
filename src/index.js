@@ -1,7 +1,10 @@
+import './styles/index.css';
+
 function component() {
     var element = document.createElement('div');
 
     element.innerHTML = 'Hello webpack2';
+    element.classList.add('hello');
 
     return element;
 }
