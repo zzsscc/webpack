@@ -2,8 +2,9 @@
   "name": "webpack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.config.js",
   "scripts": {
+    "start": "webpack-dev-server --open --env.NODE_ENV=development --mode development --port 3000",
     "dev": "webpack --env.NODE_ENV=development --mode development",
     "prod": "webpack --env.NODE_ENV=production --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +23,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1",
     "xml-loader": "^1.2.1"
   }
 }
