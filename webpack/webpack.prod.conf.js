@@ -1,9 +1,15 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { srcRoot, rootNode } = require('../configs/helpers/path');
 
 module.exports = {
-  entry: `${srcRoot('index.js')}`,   // 入口文件
+  entry: // 入口文件
+    // `${srcRoot('index.js')}`,
+    { // 多文件
+      app: `${srcRoot('index.js')}`,
+      print: `${srcRoot('print.js')}`,
+    },
   output: {
-    filename: 'bundle.js',           // 输出文件
+    filename: '[name].bundle.js',           // 输出文件
     path: rootNode('dist'),          // 输出文件的路径
     // 给url-loader用的资源文件前缀路径,表示资源的发布地址，当配置过该属性后，打包文件中所有通过相对路径引用的资源都会被配置的路径所替换。
     // 具体表现为：被设置为url-loader的outputPath前的路径  -->  ..path/dist/img
@@ -41,9 +47,26 @@ module.exports = {
         ]
       },
       // 加载字体文件 file-loader url-loader
-      { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+      { test: /\.(woff|woff2)(\?v=\d\.\d\.\d)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.ttf(\?v=\d\.\d\.\d)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.eot(\?v=\d\.\d\.\d)?$/, loader: 'file-loader' },
+      // 加载资源文件，csv/tsv/xml (json默认支持)
+      {
+        test: /\.(csv|tsv)$/,
+        use: [
+          'csv-loader'
+        ]
+      },
+      {
+        test: /\.xml$/,
+        use: [
+          'xml-loader'
+        ]
+      }
     ]
-  }
+  },
+  plugins: [
+    // 打包构建前先清理输出文件夹
+    new CleanWebpackPlugin(['dist'], { root: rootNode('') }),
+  ],
 };
