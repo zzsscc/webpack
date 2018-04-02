@@ -25,5 +25,8 @@ init
 加载样式文件
  --> style-loader && css-loader && sass-loader && node-sass
 
-加载图片 file-loader url-loader
+加载图片
  --> file-loader url-loader
+
+加载字体文件
+-->  file-loader url-loader
