@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { srcRoot, rootNode } = require('../configs/helpers/path');
 
@@ -15,7 +16,11 @@ module.exports = {
     // 具体表现为：被设置为url-loader的outputPath前的路径  -->  ..path/dist/img
     publicPath: 'dist/'
   },
-  devtool: 'source-map',     // 使用 source map，追踪错误和警告位置
+  devtool: 'inline-source-map',     // 使用 source map，追踪错误和警告位置
+  devServer: {
+    // contentBase: './dist',
+    hot: true
+  },
   module: {
     rules: [
       // 加载样式文件 style-loader  css-loader  sass-loader
@@ -69,5 +74,7 @@ module.exports = {
   plugins: [
     // 打包构建前先清理输出文件夹
     new CleanWebpackPlugin(['dist'], { root: rootNode('') }),
+    new webpack.NamedModulesPlugin(),   // 以便更容易查看要修补(patch)的依赖
+    new webpack.HotModuleReplacementPlugin()
   ],
 };

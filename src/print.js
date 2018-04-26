@@ -1,7 +1,7 @@
 export const printMe = () => {
-  console.error('I get called from print.js!');
+  console.log('I get called from print.js!');
 }
 
 export const printAll = () => {
-  console.log('printAll!');
+  console.log('printAll!!!');
 }
