@@ -16,7 +16,7 @@ module.exports = {
     // 具体表现为：被设置为url-loader的outputPath前的路径  -->  ..path/dist/img
     publicPath: 'dist/'
   },
-  devtool: 'inline-source-map',     // 使用 source map，追踪错误和警告位置
+  devtool: 'inline-source-map',     // 使用 source map，追踪错误和警告位置  // prod 使用source-map
   devServer: {
     // contentBase: './dist',
     hot: true
@@ -74,7 +74,8 @@ module.exports = {
   plugins: [
     // 打包构建前先清理输出文件夹
     new CleanWebpackPlugin(['dist'], { root: rootNode('') }),
-    new webpack.NamedModulesPlugin(),   // 以便更容易查看要修补(patch)的依赖
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.NamedModulesPlugin(),   // 以便更容易查看要修补(patch)的依赖  // prod不需要
+    new webpack.HotModuleReplacementPlugin(),    // prod不需要
+    new UglifyJSPlugin() // dev可以不需要
   ],
 };

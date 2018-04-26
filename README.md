@@ -63,3 +63,10 @@ plugins: [
   new webpack.NamedModulesPlugin(),    // 以便更容易查看要修补(patch)的依赖
   new webpack.HotModuleReplacementPlugin()
 ],
+
+Tree Shaking
+-->  uglifyjs-webpack-plugin
+-->  
+plugins: [
+  new UglifyJSPlugin()
+],
