@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { srcRoot, rootNode } = require('../configs/helpers/path');
 
 module.exports = {
@@ -69,5 +70,8 @@ module.exports = {
   plugins: [
     // 打包构建前先清理输出文件夹
     new CleanWebpackPlugin(['dist'], { root: rootNode('') }),
+    new HtmlWebpackPlugin({
+      title: 'Output Management'
+    })
   ],
 };

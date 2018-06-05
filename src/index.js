@@ -6,7 +6,7 @@ import { printMe, printAll } from './print.js';
 const component = () => {
   const element = document.createElement('div');
 
-  element.innerHTML = 'Hello webpack2';
+  element.innerHTML = 'Hello webpack4';
   element.classList.add('hello');
 
   printMe();
