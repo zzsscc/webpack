@@ -76,6 +76,6 @@ module.exports = {
     new CleanWebpackPlugin(['dist'], { root: rootNode('') }),
     new webpack.NamedModulesPlugin(),   // 以便更容易查看要修补(patch)的依赖  // prod不需要
     new webpack.HotModuleReplacementPlugin(),    // prod不需要
-    new UglifyJSPlugin() // dev可以不需要
+    // new UglifyJSPlugin() // dev可以不需要
   ],
 };
